@@ -1,15 +1,14 @@
 name: Build and Publish to PyPI
 
-permissions:
-  id-token: write
-  contents: read
-
 on:
   push:
     tags:
       - 'v*'  # Trigger on version tags
 
 jobs:
+  permissions:
+    id-token: write
+
   build-and-publish:
     runs-on: ubuntu-latest
     
