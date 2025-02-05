@@ -6,8 +6,7 @@ This package provides CDDD (Continuous and Data-Driven Descriptors) models in ON
 
 ## Limitations
 
-- Currently, only encoder model is implemented. Decoder uses a TF specific opcodes that are not supported by ONNX. I am working on a solution.
-
+* Currently, only the encoder model is implemented. The decoder uses TensorFlow-specific opcodes that are not supported by ONNX. I am working on a solution.
 ## Installation
 
 ```bash
