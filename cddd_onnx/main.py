@@ -104,11 +104,12 @@ def main():
     
     # Read input file
     if args.input.endswith('.csv'):
-        df = pd.read_csv(args.input)
-        smiles_list = df[args.smiles_header].tolist()
+        input_df = pd.read_csv(args.input)
+        smiles_list = input_df[args.smiles_header].tolist()
     elif args.input.endswith('.smi'):
         with open(args.input, 'r') as f:
             smiles_list = [line.strip() for line in f]
+        input_df = pd.DataFrame({'smiles': smiles_list})
     else:
         raise ValueError("Input file must be .csv or .smi")
     
@@ -117,11 +118,16 @@ def main():
     processed_smiles = [preprocess_smiles(smi) for smi in smiles_list]
     embeddings = model.seq_to_emb(smiles_list, args.batch_size)
     
-    # Create result dataframe with SMILES and descriptors
-    result_df = pd.DataFrame(embeddings)
-    result_df.columns = [f'descriptor_{i}' for i in range(embeddings.shape[1])]
-    result_df.insert(0, 'smiles', smiles_list)
-    result_df.insert(1, 'new_smiles', processed_smiles)
+    # Create descriptors dataframe
+    descriptors_df = pd.DataFrame(embeddings)
+    descriptors_df.columns = [f'descriptor_{i}' for i in range(embeddings.shape[1])]
+    
+    # Add processed SMILES if not already in input
+    if 'new_smiles' not in input_df.columns:
+        input_df['new_smiles'] = processed_smiles
+    
+    # Combine original data with descriptors
+    result_df = pd.concat([input_df, descriptors_df], axis=1)
     
     # Save results
     result_df.to_csv(args.output, index=False)

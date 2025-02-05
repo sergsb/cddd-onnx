@@ -12,6 +12,11 @@ setup(
         "pandas",
         "rdkit",
     ],
+    entry_points={
+        'console_scripts': [
+            'cddd-onnx=cddd_onnx.main:main',
+        ],
+    },
     extras_require={
         'dev': [
             'pytest',

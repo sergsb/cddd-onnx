@@ -40,4 +40,4 @@ dev = [
 "Bug Tracker" = "https://github.com/sergsb/cddd-onnx/issues"
 
 [project.scripts]
-cddd-onnx = "cddd_onnx.__main__:run"
+cddd-onnx = "cddd_onnx.main:main"
