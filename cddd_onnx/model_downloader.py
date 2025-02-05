@@ -62,7 +62,6 @@ def download_models():
         # Skip if file exists and MD5 matches
         if os.path.exists(model_path):
             if calculate_md5(model_path) == model_info["md5"]:
-                print(f"Model {model_name} already exists and MD5 matches")
                 continue
             else:
                 print(f"MD5 mismatch for {model_name}, re-downloading...")

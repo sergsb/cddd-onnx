@@ -32,8 +32,6 @@ class InputPipelineInferEncode():
         valid_mask = [not pd.isna(smi) for smi in processed_smiles]
         self.seq_list = [smi for smi, valid in zip(processed_smiles, valid_mask) if valid]
         
-        print(f"Processing {len(self.seq_list)} valid SMILES out of {len(seq_list)} total")
-        
         if not self.seq_list:
             raise ValueError("No valid SMILES found after preprocessing")
             
