@@ -41,8 +41,8 @@ model = InferenceModel()
 smiles_list = ["CCCCO", "CCCN", "CC1=CC=CC=C1"]
 embeddings = model.seq_to_emb(smiles_list)
 ```
-Beware, that if the SMILES is out of AD, the preprocessor returns `None` and you will have a line of `NaNs` for such compounds 
-
+* The preprocessing stage is inside the seq_to_emb function, so you do not need to run it separately.
+* Be aware that if the SMILES is out of AD, the preprocessor returns None, resulting in a row of NaNs for such compounds.
 ### Input Formats
 Supported input formats:
 - CSV files with SMILES column
