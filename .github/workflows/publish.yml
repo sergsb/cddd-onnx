@@ -1,6 +1,7 @@
 name: Build and Publish to PyPI
 
 on:
+  workflow_dispatch:  # Allows manual triggering
   push:
     tags:
       - 'v*'  # Trigger on version tags
