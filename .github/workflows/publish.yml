@@ -6,12 +6,12 @@ on:
       - 'v*'  # Trigger on version tags
 
 jobs:
-  permissions:
-    id-token: write
-
   build-and-publish:
     runs-on: ubuntu-latest
     
+    permissions:
+      id-token: write  # Required for OIDC-based authentication with PyPI
+
     steps:
     - uses: actions/checkout@v4
     
