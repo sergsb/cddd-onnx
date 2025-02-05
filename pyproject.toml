@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cddd-onnx"
+version = "0.1.0"
+authors = [
+  { name="Sergey Sosnin", email="sergey.sosnin@univie.ac.at" },
+]
+description = "CDDD models in ONNX format with automatic model downloading"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Environment :: Console",
+]
+dependencies = [
+    "onnxruntime",
+    "requests",
+    "tqdm",
+    "numpy",
+    "pandas",
+    "rdkit",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sergsb/cddd-onnx"
+"Bug Tracker" = "https://github.com/sergsb/cddd-onnx/issues"
+
+[project.scripts]
+cddd-onnx = "cddd_onnx.__main__:run"
