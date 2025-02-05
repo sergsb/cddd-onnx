@@ -21,12 +21,12 @@ pip install cddd-onnx
 Extract molecular descriptors from SMILES using the command line interface:
 
 ```bash
-python -m cddd_onnx --input smiles.smi --output descriptors.csv
+cddd-onnx --input smiles.smi --output descriptors.csv
 ```
 
 For CSV files with a custom SMILES column header:
 ```bash
-python -m cddd_onnx --input molecules.csv --output descriptors.csv --smiles_header smiles_column
+cddd-onnx --input molecules.csv --output descriptors.csv --smiles_header smiles_column
 ```
 
 ### Python Interface
@@ -34,14 +34,11 @@ python -m cddd_onnx --input molecules.csv --output descriptors.csv --smiles_head
 The format is the same as in the original CDDD package. Just import `cddd_onnx` instead of `cddd`:
 
 ```python
-from cddd_onnx import InferenceModel, preprocess_smiles
-
+from cddd_onnx import InferenceModel
 # Create model instance
 model = InferenceModel()
 
-# Preprocess SMILES (if needed)
 smiles_list = ["CCCCO", "CCCN", "CC1=CC=CC=C1"]
-# Get molecular descriptors
 embeddings = model.seq_to_emb(smiles_list, batch_size=128)
 ```
 Beware, that if the SMILES is out of AD, the preprocessor returns `None` and you will have a line of `NaNs` for such compounds 
