@@ -39,7 +39,7 @@ from cddd_onnx import InferenceModel
 model = InferenceModel()
 
 smiles_list = ["CCCCO", "CCCN", "CC1=CC=CC=C1"]
-embeddings = model.seq_to_emb(smiles_list, batch_size=128)
+embeddings = model.seq_to_emb(smiles_list)
 ```
 Beware, that if the SMILES is out of AD, the preprocessor returns `None` and you will have a line of `NaNs` for such compounds 
 
@@ -58,6 +58,7 @@ The models are automatically downloaded to `~/.cddd_onnx/models/` directory when
 - numpy
 - pandas
 - tqdm
+- rdkit
 
 ## License
 
