@@ -40,12 +40,11 @@ from cddd_onnx import InferenceModel, preprocess_smiles
 model = InferenceModel()
 
 # Preprocess SMILES (if needed)
-smiles_list = ["CCO", "CCN", "CC1=CC=CC=C1"]
-processed_smiles = [preprocess_smiles(s) for s in smiles_list]
-
+smiles_list = ["CCCCO", "CCCN", "CC1=CC=CC=C1"]
 # Get molecular descriptors
-embeddings = model.seq_to_emb(processed_smiles, batch_size=128)
+embeddings = model.seq_to_emb(smiles_list, batch_size=128)
 ```
+Beware, that if the SMILES is out of AD, the preprocessor returns `None` and you will have a line of `NaNs` for such compounds 
 
 ### Input Formats
 Supported input formats:
